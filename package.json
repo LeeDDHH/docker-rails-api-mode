@@ -1,0 +1,20 @@
+{
+  "name": "docker-rails-api-mode",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "yarn docker:api up -d",
+    "dev:start": "yarn docker:api start",
+    "dev:stop": "yarn docker:api stop",
+    "dev:down": "yarn dev:stop && yarn docker:api down",
+    "docker:api": "docker-compose -f docker/api/docker-compose.yml -p rails-api-mode",
+    "build": "yarn docker:api build --no-cache",
+    "ruby:build": "docker-compose -f docker/ruby_image/docker-compose.yml -p ruby_image build --no-cache",
+    "migrate": "docker exec -it rails-api bundle exec rails db:migrate",
+    "seed": "docker exec -it rails-api bundle exec rails db:seed",
+    "console": "docker exec -it rails-api bundle exec rails c",
+    "routes": "docker exec -it rails-api bundle exec rails routes",
+    "db:create": "docker exec -it rails-api bundle exec rails db:create",
+    "log:api": "docker logs -f rails-api"
+  }
+}

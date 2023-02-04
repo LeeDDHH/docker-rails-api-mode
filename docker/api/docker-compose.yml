@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  api-rails:
+    platform: linux/x86_64
+    container_name: api-rails
+    image: localdev/docker-api-rails
+    build:
+      context: ../../
+      dockerfile: ./docker/api/Dockerfile
+    volumes:
+      - ../../backendVolume:/usr/app
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -u puma -p 3000 -b "0.0.0.0"

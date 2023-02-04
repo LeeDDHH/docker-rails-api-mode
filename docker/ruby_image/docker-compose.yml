@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  ruby-image:
+    platform: linux/x86_64
+    container_name: ruby-image
+    image: localdev/docker-ruby-image
+    build:
+      context: .
+      dockerfile: ./Dockerfile
